@@ -1,1 +1,6 @@
 app
+
+#environment
+.env
+
+# Executables 

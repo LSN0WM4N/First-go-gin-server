@@ -1,0 +1,69 @@
+.App {
+  text-align: center;
+  background-color: lightblue;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Estilo del header */
+.Header {
+ background-color: #007bff; /* Color de fondo azul */
+ color: white; /* Color del texto */
+ padding: 20px; /* Espaciado interno */
+ text-align: center; /* Centrar el texto */
+}
+
+/* Estilo del h1 */
+.H1 {
+ margin: 0; /* Eliminar margen */
+ font-size: 2.5em; /* Tamaño de fuente */
+}
+
+.Body {
+  flex: 1;
+
+  align-items: center;
+}
+
+.Footer {
+  background-color: #007BFF;
+}
+
+
+/* Estilo general del formulario */
+form {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo de los elementos del formulario */
+.formObject {
+  width: 95%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Estilo del botón de submit */
+.buttom {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.buttom:hover {
+  background-color: #0056b3;
+}

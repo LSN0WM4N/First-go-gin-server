@@ -1,28 +1,36 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"net/http"
-	"os"
+	"time"
 
 	"github.com/gin-gonic/gin"
 )
 
-// StartGin starts gin web server with setting router.
-func StartGin() {
-	gin.SetMode(gin.ReleaseMode)
-
-	router := gin.New()
-
-	router.GET("/", func(c *gin.Context) {
-		c.Redirect(http.StatusOK, "./resources/index.html")
-	})
-
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
+func constantLoop(seconds int) { // It's supposed that this will make render non to close my service
+	for {
+		time.Sleep(time.Second * time.Duration(seconds))
+		resp, err := http.Get("http://localhost:8080/api/usefull_link")
+		if err != nil {
+			log.Panic(err)
+		}
+		fmt.Println(time.Now().Local().Format("15:04:05") + " -> Status: " + resp.Status)
 	}
-	if err := router.Run(":" + port); err != nil {
-		log.Panicf("error: %s", err)
+}
+
+func main() {
+	router := gin.New()
+	router.Delims("{[{", "}]}")
+	router.LoadHTMLGlob("./resources/*") // NOW you can render any html file usin go-gin
+
+	go constantLoop(30)
+
+	router.GET("/", rootHandler)
+	router.GET("/api/usefull_link", usefullLink)
+
+	if err := router.Run(":8080"); err != nil {
+		log.Panicf("[-] Error: %s", err)
 	}
 }
