@@ -33,9 +33,7 @@ func usefullLink(c *gin.Context) {
 func main() {
 	router := gin.New()
 	router.Delims("{[{", "}]}")
-	router.LoadHTMLGlob("./client/build/static/css/*") // NOW you can render any html file usin go-gin
-	router.LoadHTMLGlob("./client/build/static/js/*")  // NOW you can render any html file usin go-gin
-	router.LoadHTMLGlob("./client/build/*.html")       // NOW you can render any html file usin go-gin
+	router.LoadHTMLGlob("./resources/*.html")
 
 	go constantLoop(30)
 
