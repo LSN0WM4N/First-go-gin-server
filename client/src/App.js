@@ -1,13 +1,7 @@
 import './App.css';
-import Body from './coomponents/Body';
-import Footer from './coomponents/Footer';
-import Header from './coomponents/Header';
-
-/**
- *  Header
- *  Calculator
- *  
- */
+import Body from './components/Body';
+import Footer from './components/Footer';
+import Header from './components/Header';
 
 function App() {
   return (

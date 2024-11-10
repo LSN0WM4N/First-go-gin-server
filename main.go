@@ -20,10 +20,22 @@ func constantLoop(seconds int) { // It's supposed that this will make render non
 	}
 }
 
+func rootHandler(c *gin.Context) {
+	fmt.Println("Everything OK")
+	c.HTML(http.StatusOK, "index.html", gin.H{})
+}
+
+func usefullLink(c *gin.Context) {
+	fmt.Println("Jaja, works")
+	c.Writer.Header().Add("all", "fine")
+}
+
 func main() {
 	router := gin.New()
 	router.Delims("{[{", "}]}")
-	router.LoadHTMLGlob("./resources/*") // NOW you can render any html file usin go-gin
+	router.LoadHTMLGlob("./client/build/static/css/*") // NOW you can render any html file usin go-gin
+	router.LoadHTMLGlob("./client/build/static/js/*")  // NOW you can render any html file usin go-gin
+	router.LoadHTMLGlob("./client/build/*.html")       // NOW you can render any html file usin go-gin
 
 	go constantLoop(30)
 

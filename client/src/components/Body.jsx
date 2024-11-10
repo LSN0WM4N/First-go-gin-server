@@ -20,6 +20,7 @@ const getLumensNeeded = (room) => {
     return -1   
 }
 
+// TODO: Make the buttom unaviable when options aren't setted   
 const Body = () => {
     const [xSide, setXSIDE] = useState(0);
     const [ySide, setYSIDE] = useState(0);
@@ -66,7 +67,7 @@ const Body = () => {
                     onChange={ (e) => {setLum(e.target.value)} }
                 ></input>
 
-                <label for="xSide">Diga dimencion X: </label>
+                <label for="xSide">Diga largo de la habitacion: </label>
                 <input
                     className="formObject" 
                     id="xSide"
@@ -74,7 +75,7 @@ const Body = () => {
                     onChange={ (e) => {setXSIDE(e.target.value)} }
                 ></input>
                 
-                <label for="ySide">Diga dimencion Y: </label>
+                <label for="ySide">Diga ancho de la habitacion: </label>
                 <input 
                     className="formObject"
                     id="ySide"
@@ -82,10 +83,12 @@ const Body = () => {
                     onChange={ (e) => {setYSIDE(e.target.value)} }
                 ></input>
                 
-                <button type="submit" className="buttom">Submit</button>
+                <button type="submit" className="buttom">Enviar</button>
             </form>
         
-            <h3> Se necesitan { answer } luces al menos </h3> 
+            <form>
+                <h3> Se necesitan { answer } luces al menos </h3> 
+            </form>
         </div>
     );
 }
