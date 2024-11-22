@@ -29,6 +29,10 @@ const Body = () => {
     const [answer, setAnswer] = useState(0);
     const [distUnit, setDistUnit] = useState(1);
 
+    const validate = () => {
+        return !xSide || !ySide || !selectedOption;
+    }
+
     const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -51,7 +55,7 @@ const Body = () => {
                     id="options" 
                     value={selectedOption} 
                     className="formObject" 
-                    onChange={(e) => setSelectedOption(e.target.value)}
+                    onChange={(e) => {setSelectedOption(e.target.value)}}
                 >
                     <option value="">--Seleccione una opción--</option>
                     { options.map( (e) => {
@@ -96,7 +100,7 @@ const Body = () => {
                     onChange={ (e) => {setYSIDE(e.target.value)} }
                 ></input>
                 
-                <button type="submit" className="buttom">Enviar</button>
+                <button type="submit" className="buttom" disabled={validate()}>Enviar</button>
             </form>
         
             <form>
