@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const options = [
-    {"value" : "Salon", "luminosity" : 250},
+    {"value" : "Salón", "luminosity" : 250},
     {"value" : "Dormitorios", "luminosity" : 200},
     {"value" : "Cocinas", "luminosity" : 300},
     {"value" : "Cuartos de baño", "luminosity" : 200},
@@ -24,9 +24,10 @@ const getLumensNeeded = (room) => {
 const Body = () => {
     const [xSide, setXSIDE] = useState(0);
     const [ySide, setYSIDE] = useState(0);
-    const [lum, setLum] = useState(0);
+    const [lum, setLum] = useState(5000);
     const [selectedOption, setSelectedOption] = useState('');
     const [answer, setAnswer] = useState(0);
+    const [distUnit, setDistUnit] = useState(1);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -37,7 +38,8 @@ const Body = () => {
             return
         }
 
-        setAnswer(Math.ceil(xSide * ySide * selected / lum))
+        console.log(xSide, ySide, distUnit, selected, lum)
+        setAnswer(Math.ceil((xSide * ySide) / distUnit * selected / lum))
     };
 
     return (
@@ -51,8 +53,7 @@ const Body = () => {
                     className="formObject" 
                     onChange={(e) => setSelectedOption(e.target.value)}
                 >
-                    
-                    <option value="">--Please choose an option--</option>
+                    <option value="">--Seleccione una opción--</option>
                     { options.map( (e) => {
                         return <option key={e.value} value={e.value}>{ e.value }</option>
                     } ) } 
@@ -61,12 +62,24 @@ const Body = () => {
                 
                 <label for="lum">Diga Luminosidad: </label>
                 <input 
+                    defaultValue={5000}
                     className="formObject"
                     id="lum"
                     type="number"
-                    onChange={ (e) => {setLum(e.target.value)} }
+                    onChange={ (e) => {setLum(e.target.value)} 
+                }
                 ></input>
-
+                <label for='distUnit'>Seleccione una unidad de medida:</label>
+                <select 
+                    defaultValue={'m'}
+                    className="formObject"
+                    id="distUnit"
+                    type=""
+                    onChange={ (e) => {setDistUnit(e.target.value === 'inch' ? 40 : 1)}}
+                >
+                    <option value={'m'}> Metros </option>
+                    <option value={'inch'}> Pulgadas </option>
+                </select>
                 <label for="xSide">Diga largo de la habitacion: </label>
                 <input
                     className="formObject" 

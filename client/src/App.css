@@ -8,10 +8,12 @@
 
 /* Estilo del header */
 .Header {
- background-color: #007bff; /* Color de fondo azul */
- color: white; /* Color del texto */
- padding: 20px; /* Espaciado interno */
- text-align: center; /* Centrar el texto */
+  display: flex; 
+  justify-content: center; /* Alinear al centro */
+  background-color: #007bff; /* Color de fondo azul */
+  color: white; /* Color del texto */
+  padding: 20px; /* Espaciado interno */
+  text-align: center; /* Centrar el texto */
 }
 
 /* Estilo del h1 */
@@ -67,4 +69,18 @@ form {
 
 .buttom:hover {
   background-color: #0056b3;
+}
+
+img {
+  height: 2.5em;
+}
+
+.Blocks {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.luminosity {
+  display: flex;
 }

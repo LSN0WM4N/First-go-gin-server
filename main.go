@@ -9,14 +9,14 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func constantLoop(seconds int) { // It's supposed that this will make render non to close my service
+func constantLoop(seconds int) {
 	for {
 		time.Sleep(time.Second * time.Duration(seconds))
-		resp, err := http.Get("http://localhost:8080/api/usefull_link")
+		resp, err := http.Get("http://localhost:8080/api/v1/usefull_link")
 		if err != nil {
 			log.Panic(err)
 		}
-		fmt.Println(time.Now().Local().Format("15:04:05") + " -> Status: " + resp.Status)
+		fmt.Println(time.Now().Local().Format("00:00:00") + " -> Status: " + resp.Status)
 	}
 }
 
@@ -30,15 +30,25 @@ func usefullLink(c *gin.Context) {
 	c.Writer.Header().Add("all", "fine")
 }
 
+var startTime time.Time
+
+func printUptime(c *gin.Context) {
+	elapsedTime := time.Since(startTime)
+	fmt.Println(elapsedTime)
+}
+
 func main() {
 	router := gin.New()
 	router.Delims("{[{", "}]}")
-	router.LoadHTMLGlob("./resources/*.html")
+	router.LoadHTMLGlob("./*.html")
+
+	startTime = time.Now()
 
 	go constantLoop(30)
 
 	router.GET("/", rootHandler)
-	router.GET("/api/usefull_link", usefullLink)
+	router.GET("/api/v1/usefull_link", usefullLink)
+	router.GET("/api/v1/uptime", printUptime)
 
 	if err := router.Run(":8080"); err != nil {
 		log.Panicf("[-] Error: %s", err)

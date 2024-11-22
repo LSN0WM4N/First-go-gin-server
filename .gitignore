@@ -1,7 +1,7 @@
 app
 
 #React Code 
-/client
+client/
 
 #environment
 .env
